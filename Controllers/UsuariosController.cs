@@ -23,9 +23,9 @@ namespace ApiRestProyecto.Controllers
 
         // GET: api/Usuarios/5
         [HttpGet("{correo}")]
-        public async Task<ActionResult<Usuario>> GetUsuario(string id)
+        public async Task<ActionResult<Usuario>> GetUsuario(string correo)
         {
-            var usuario = await _context.Usuarios.FindAsync(id);
+            var usuario = await _context.Usuarios.FindAsync(correo);
 
             if (usuario == null)
             {
@@ -38,9 +38,9 @@ namespace ApiRestProyecto.Controllers
         // PUT: api/Usuarios/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{correo}")]
-        public async Task<IActionResult> PutUsuario(string id, Usuario usuario)
+        public async Task<IActionResult> PutUsuario(string correo, Usuario usuario)
         {
-            if (id != usuario.Correo)
+            if (correo != usuario.Correo)
             {
                 return BadRequest();
             }
@@ -53,7 +53,7 @@ namespace ApiRestProyecto.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UsuarioExists(id))
+                if (!UsuarioExists(correo))
                 {
                     return NotFound();
                 }

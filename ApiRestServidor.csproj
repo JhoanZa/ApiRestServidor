@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <Folder Include="Modelos\Compra\" />
-    <Folder Include="Modelos\Domicilio\" />
     <Folder Include="Modelos\Producto\" />
   </ItemGroup>
 

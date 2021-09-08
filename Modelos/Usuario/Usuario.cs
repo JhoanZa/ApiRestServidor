@@ -10,31 +10,25 @@ namespace ApiRestProyecto.Modelos
     {
       
         [Required]
-        [Display(Name = "Tipo de usuario")]
         public int TipoUsuario { get; set; }
 
         [Required]
-        [Display(Name = "Primer nombre")]
         [StringLength(25)]
         public String PrimerNombre { get; set; }
 
-        [Display(Name = "Segundo nombre")]
         [StringLength(25)]
         public String SegundoNombre { get; set; }
 
         [Required]
-        [Display(Name = "Primer apellido")]
         [StringLength(25)]
         public String PrimerApellido { get; set; }
 
-        [Display(Name = "Segundo apellido")]
         [StringLength(25)]
         public String SegundoApellido { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy:MM:dd}", ApplyFormatInEditMode = true)]
-        [Display(Name = "Fecha de nacimiento")]
         public DateTime FechaNacimiento { get; set; }
 
         [Required]
