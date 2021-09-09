@@ -22,24 +22,11 @@ namespace ApiRestServidor.Controllers
         }
 
         // GET: api/Domicilios
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Domicilio>>> GetDomicilios()
+        [HttpGet("{correoAsociado}")]
+        public async Task<ActionResult<IEnumerable<Domicilio>>> GetDomicilios(String correoAsociado)
         {
-            return await _context.Domicilios.ToListAsync();
-        }
-
-        // GET: api/Domicilios/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Domicilio>> GetDomicilio(int id)
-        {
-            var domicilio = await _context.Domicilios.FindAsync(id);
-
-            if (domicilio == null)
-            {
-                return NotFound();
-            }
-
-            return domicilio;
+            var domicilios = from domicilio in _context.Domicilios where domicilio.CorreoAsociado.Equals(correoAsociado) select domicilio;
+            return await domicilios.ToListAsync();
         }
 
         // PUT: api/Domicilios/5
