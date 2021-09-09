@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiRestServidor.Migrations
 {
     [DbContext(typeof(ServidorDbContext))]
-    [Migration("20210829043445_tablas")]
+    [Migration("20210909035242_tablas")]
     partial class tablas
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -61,6 +61,73 @@ namespace ApiRestServidor.Migrations
                     b.HasKey("Correo");
 
                     b.ToTable("Usuarios");
+                });
+
+            modelBuilder.Entity("ApiRestServidor.Modelos.Domicilio.Departamento", b =>
+                {
+                    b.Property<int>("IdDepartamento")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("IdDepartamento");
+
+                    b.ToTable("Departamentos");
+                });
+
+            modelBuilder.Entity("ApiRestServidor.Modelos.Domicilio.Domicilio", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CorreoAsociado")
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
+
+                    b.Property<string>("Direccion")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("NombreDepartamento")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NombreMunicipio")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Domicilios");
+                });
+
+            modelBuilder.Entity("ApiRestServidor.Modelos.Domicilio.Municipio", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("IdDepartamento")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NombreMunicipio")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Municipios");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

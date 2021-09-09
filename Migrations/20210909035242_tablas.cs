@@ -47,6 +47,49 @@ namespace ApiRestServidor.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Departamentos",
+                columns: table => new
+                {
+                    IdDepartamento = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombre = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Departamentos", x => x.IdDepartamento);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Domicilios",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CorreoAsociado = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
+                    Direccion = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    NombreDepartamento = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NombreMunicipio = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Domicilios", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Municipios",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdDepartamento = table.Column<int>(type: "int", nullable: false),
+                    NombreMunicipio = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Municipios", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Usuarios",
                 columns: table => new
                 {
@@ -227,6 +270,15 @@ namespace ApiRestServidor.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Departamentos");
+
+            migrationBuilder.DropTable(
+                name: "Domicilios");
+
+            migrationBuilder.DropTable(
+                name: "Municipios");
 
             migrationBuilder.DropTable(
                 name: "Usuarios");

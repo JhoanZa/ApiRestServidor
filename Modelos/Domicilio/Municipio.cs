@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,20 +9,14 @@ namespace ApiRestServidor.Modelos.Domicilio
 {
     public class Municipio
     {
-        [Key]
-        public int IdMunicipio { get; set; }
+        public int Id { get; set; }
+
+        [Required]
+        public int IdDepartamento { get; set; }
         
         [Required]
         [StringLength(50)]
-        public String Nombre { get; set; }
+        public String NombreMunicipio { get; set; }
         
-        [Required]
-        public int CodigoPostal { get; set; }
-        
-        [Required]
-        public int IdDepartamento { get; set; }
-
-        //Relaciones
-        public virtual Departamento Departamento { get; set; }
     }
 }

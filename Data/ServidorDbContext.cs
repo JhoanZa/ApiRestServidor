@@ -1,4 +1,5 @@
 ﻿using ApiRestProyecto.Modelos;
+using ApiRestServidor.Modelos.Domicilio;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -14,6 +15,10 @@ namespace ApiRestProyecto.Data
         {
         }
         public virtual DbSet<Usuario> Usuarios { get; set; }
+
+        public virtual DbSet<Domicilio> Domicilios { get; set; }
+        public virtual DbSet<Departamento> Departamentos { get; set; }
+        public virtual DbSet<Municipio> Municipios { get; set; }
 
     }
 }
