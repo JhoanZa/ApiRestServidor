@@ -1,11 +1,8 @@
 ﻿using ApiRestProyecto.Modelos;
 using ApiRestServidor.Modelos.Domicilio;
+using ApiRestServidor.Modelos.Producto;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ApiRestProyecto.Data
 {
@@ -19,6 +16,9 @@ namespace ApiRestProyecto.Data
         public virtual DbSet<Domicilio> Domicilios { get; set; }
         public virtual DbSet<Departamento> Departamentos { get; set; }
         public virtual DbSet<Municipio> Municipios { get; set; }
+
+        public virtual DbSet<Producto> Productos { get; set; }
+        public virtual DbSet<Categoria> Categorias { get; set; }
 
     }
 }

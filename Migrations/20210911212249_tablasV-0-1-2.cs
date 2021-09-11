@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ApiRestServidor.Migrations
 {
-    public partial class tablas : Migration
+    public partial class tablasV012 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -47,6 +47,19 @@ namespace ApiRestServidor.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Categorias",
+                columns: table => new
+                {
+                    IdCategoria = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombre = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Categorias", x => x.IdCategoria);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Departamentos",
                 columns: table => new
                 {
@@ -87,6 +100,24 @@ namespace ApiRestServidor.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Municipios", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Productos",
+                columns: table => new
+                {
+                    IdProducto = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CorreoVendedor = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: true),
+                    Categoria = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: true),
+                    Nombre = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: true),
+                    Descripcion = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
+                    CantidadDisponible = table.Column<int>(type: "int", nullable: false),
+                    ValorVenta = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Productos", x => x.IdProducto);
                 });
 
             migrationBuilder.CreateTable(
@@ -272,6 +303,9 @@ namespace ApiRestServidor.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Categorias");
+
+            migrationBuilder.DropTable(
                 name: "Departamentos");
 
             migrationBuilder.DropTable(
@@ -279,6 +313,9 @@ namespace ApiRestServidor.Migrations
 
             migrationBuilder.DropTable(
                 name: "Municipios");
+
+            migrationBuilder.DropTable(
+                name: "Productos");
 
             migrationBuilder.DropTable(
                 name: "Usuarios");
