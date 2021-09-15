@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ApiRestProyecto.Data;
@@ -28,18 +27,12 @@ namespace ApiRestServidor.Controllers
             return await _context.Productos.ToListAsync();
         }
 
-        // GET: api/Productos/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Producto>> GetProducto(int id)
+        // GET: api/Productos
+        [HttpGet("{correo}")]
+        public async Task<ActionResult<IEnumerable<Producto>>> GetMunicipios(String correo)
         {
-            var producto = await _context.Productos.FindAsync(id);
-
-            if (producto == null)
-            {
-                return NotFound();
-            }
-
-            return producto;
+            var productos = from producto in _context.Productos where producto.CorreoVendedor.Equals(correo) select producto;
+            return await productos.ToListAsync();
         }
 
         // PUT: api/Productos/5
