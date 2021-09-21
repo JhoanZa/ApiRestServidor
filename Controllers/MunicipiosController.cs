@@ -25,7 +25,7 @@ namespace ApiRestServidor.Controllers
         [HttpGet("{idDepartamento}")]
         public async Task<ActionResult<IEnumerable<Municipio>>> GetMunicipios(int idDepartamento)
         {
-            var municipios = from municipio in _context.Municipios where municipio.IdDepartamento == idDepartamento select municipio;
+            var municipios = from municipio in _context.Municipios where municipio.IdDepartamento == idDepartamento orderby municipio.NombreMunicipio.Substring(0,5) ascending select municipio;
             return await municipios.ToListAsync();
         }
     }

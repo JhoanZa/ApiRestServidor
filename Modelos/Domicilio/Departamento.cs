@@ -10,8 +10,8 @@ namespace ApiRestServidor.Modelos.Domicilio
         public int IdDepartamento { get; set; }
         
         [Required]
-        [StringLength(20)]
-        public String Nombre { get; set; }
+        [StringLength(40)]
+        public string Nombre { get; set; }
 
     }
 }

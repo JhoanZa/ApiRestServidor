@@ -8,7 +8,7 @@ namespace ApiRestProyecto.Modelos
 {
     public class Usuario
     {
-      
+    
         [Required]
         public int TipoUsuario { get; set; }
 

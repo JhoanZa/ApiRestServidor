@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiRestServidor.Migrations
 {
     [DbContext(typeof(ServidorDbContext))]
-    [Migration("20210911212249_tablasV-0-1-2")]
-    partial class tablasV012
+    [Migration("20210921063220_tablasV-0-1-3")]
+    partial class tablasV013
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -72,8 +72,8 @@ namespace ApiRestServidor.Migrations
 
                     b.Property<string>("Nombre")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.HasKey("IdDepartamento");
 
