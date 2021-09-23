@@ -1,5 +1,6 @@
 ﻿using ApiRestProyecto.Data;
 using ApiRestServidor.Modelos.Domicilio;
+using ApiRestServidor.Modelos.Producto;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -75,12 +76,12 @@ namespace ApiRestServidor.Data
                 {
                     return;
                 }
-               
+
                 if (context.Municipios.Any())
                 {
                     return;
                 }
-                
+
                 //Municipios del Amazonas
                 var departamentoL = from departamento in context.Departamentos where departamento.Nombre.Equals("Amazonas") select departamento;
                 int Codigo = departamentoL.First().IdDepartamento;
@@ -687,7 +688,7 @@ namespace ApiRestServidor.Data
                 Codigo = departamentoL.First().IdDepartamento;
 
                 context.Municipios.AddRange(
-                    
+
                     new Municipio { IdDepartamento = Codigo, NombreMunicipio = "Ayapel" },
                     new Municipio { IdDepartamento = Codigo, NombreMunicipio = "Buenavista" },
                     new Municipio { IdDepartamento = Codigo, NombreMunicipio = "Canalete" },
@@ -1040,7 +1041,7 @@ namespace ApiRestServidor.Data
                     new Municipio { IdDepartamento = Codigo, NombreMunicipio = "Colón" },
                     new Municipio { IdDepartamento = Codigo, NombreMunicipio = "El Rosario" },
                     new Municipio { IdDepartamento = Codigo, NombreMunicipio = "El Tablón de Gómez" },
-                    new Municipio { IdDepartamento = Codigo, NombreMunicipio = "La Cruz" }, 
+                    new Municipio { IdDepartamento = Codigo, NombreMunicipio = "La Cruz" },
                     new Municipio { IdDepartamento = Codigo, NombreMunicipio = "La Unión" },
                     new Municipio { IdDepartamento = Codigo, NombreMunicipio = "Leiva" },
                     new Municipio { IdDepartamento = Codigo, NombreMunicipio = "Policarpa" },
@@ -1452,5 +1453,32 @@ namespace ApiRestServidor.Data
                 context.SaveChanges();
             }
         }
+
+
+        public static void InitializeCategorias(IServiceProvider serviceProvider)
+        {
+            using (var context = new ServidorDbContext(serviceProvider.GetRequiredService<DbContextOptions<ServidorDbContext>>()))
+            {
+                if (context.Categorias.Any())
+                {
+                    return;
+                }
+
+                context.Categorias.AddRange(
+                    new Categoria { Nombre = "Computadores"},
+                    new Categoria { Nombre = "Muebles"},
+                    new Categoria { Nombre = "Celulares"},
+                    new Categoria { Nombre = "Servicios"},
+                    new Categoria { Nombre = "Televisores"},
+                    new Categoria { Nombre = "Componentes electrónicos"},
+                    new Categoria { Nombre = "Casas"},
+                    new Categoria { Nombre = "Apartamentos"}
+                    );
+
+                context.SaveChanges();
+            }
+
+        }
     }
+
 }

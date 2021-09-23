@@ -25,7 +25,8 @@ namespace ApiRestServidor.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Categoria>>> GetCategorias()
         {
-            return await _context.Categorias.ToListAsync();
+            var categorias = from categoria in _context.Categorias orderby categoria.Nombre.Substring(0, 3) ascending select categoria;
+            return await categorias.ToListAsync();
         }
     }
 }
